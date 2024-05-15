@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
                 contentDescription = "靜宜之美",
                 modifier = Modifier
                     .fillMaxSize()
+                    /*
                     .pointerInput(Unit) {
                         detectTapGestures(
                             onTap = {msg = "後觸發onTap(短按)"},
@@ -82,6 +83,8 @@ class MainActivity : ComponentActivity() {
                             onPress = {msg = "先觸發onPress(按下)"}
                         )
                     }
+                     */
+
             )
         }
     }
