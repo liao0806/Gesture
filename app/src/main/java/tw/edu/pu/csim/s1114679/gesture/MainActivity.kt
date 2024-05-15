@@ -90,9 +90,11 @@ class MainActivity : ComponentActivity() {
                      */
                     .pointerInput(Unit) {
                         detectDragGesturesAfterLongPress(
-                            onDrag = { change, dragAmount -> msg="長按後拖曳進行中"},
-                            onDragStart = {msg="長按後拖曳開始"},
-                            onDragEnd = {msg="長按後拖曳結束"},
+                            onDrag = { change, dragAmount -> offset2+=dragAmount},
+                            onDragStart = {
+                                offset1 = it
+                                offset2 = it },
+                            onDragEnd = {msg="從" + offset1.toString() + "拖曳到" + offset2.toString()},
                         )
                     }
 
