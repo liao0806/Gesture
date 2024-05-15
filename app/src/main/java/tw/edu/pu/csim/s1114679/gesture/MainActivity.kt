@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
@@ -65,6 +67,8 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Tap() {
         var msg by remember { mutableStateOf("TAP相關手勢實例") }
+        var offset1 by remember { mutableStateOf(Offset.Zero) }
+        var offset2 by remember { mutableStateOf(Offset.Zero) }
 
         Column {
             Text(text = msg)
@@ -84,6 +88,13 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                      */
+                    .pointerInput(Unit) {
+                        detectDragGesturesAfterLongPress(
+                            onDrag = { change, dragAmount -> msg="長按後拖曳進行中"},
+                            onDragStart = {msg="長按後拖曳開始"},
+                            onDragEnd = {msg="長按後拖曳結束"},
+                        )
+                    }
 
             )
         }
