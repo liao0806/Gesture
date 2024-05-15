@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -73,6 +74,14 @@ class MainActivity : ComponentActivity() {
                 contentDescription = "靜宜之美",
                 modifier = Modifier
                     .fillMaxSize()
+                    .pointerInput(Unit) {
+                        detectTapGestures(
+                            onTap = {msg = "後觸發onTap(短按)"},
+                            onDoubleTap = {msg = "雙擊"},
+                            onLongPress = {msg = "長按"},
+                            onPress = {msg = "先觸發onPress(按下)"}
+                        )
+                    }
             )
         }
     }
